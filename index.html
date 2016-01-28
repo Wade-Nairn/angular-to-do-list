@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<script src="bower_components/angular/angular.min.js"></script>
+	<style>
+		body{
+			padding: 3em;
+		}
+		.done{
+			color: green;
+			text-decoration: line-through;
+		}
+		li{
+			list-style: none;
+			border: 1px solid #eee;
+			padding: 1em;
+			width:60%;
+		}
+	</style>
+</head>
+<body>
+	
+	<div ng-controller="todoCtrl">
+
+		<header>
+			<h1>My todo List</h1>
+		</header>
+		<ul>
+			<li ng-repeat="todo in todos">
+				<label ng-class="{ done: todo.completed }">
+					<input type="checkbox" ng-model="todo.completed" ng-change="save()">
+					{{ todo.content }}
+				</label>	
+			</li>
+		</ul>
+
+		<p ng-if="!todos.length">You have no tasks!</p>
+
+		<form ng-submit="add()">
+			<div  class="form-group">
+				<input type="text" class="form-control" ng-model="newTodo">
+			</div>
+			<input type="submit" value="New Todo" class="btn btn-primary">
+		</form>
+		<br>
+		<button class="btn btn-danger" ng-click="clear()">Clear</button>
+
+
+	</div>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
+	<script src="main.js"></script>
+</body>
+</html>
